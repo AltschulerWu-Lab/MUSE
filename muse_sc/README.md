@@ -14,14 +14,14 @@ MUSE combines features from transcripts (x) and morphology (y) into a joint late
 
 ## MUSE software package
 
-DAK requires the following packages for installation:
+MUSE requires the following packages for installation:
 
 - Python >= 3.6
-- TensorFlow-GPU >= 1.4.1
-- (TensorFlow >= 1.4.1 if only use CPU) 
-- Numpy >= 1.13.0
-- Scipy >= 1.0.0
-- phenograph >=
+- TensorFlow-GPU >= 1.14.0
+- (TensorFlow >= 1.14.0 if only use CPU) 
+- Numpy >= 1.16.2
+- Scipy >= 1.1.1
+- phenograph >= 1.5.2
 
 
 ## Usage
