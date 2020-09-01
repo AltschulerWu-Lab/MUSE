@@ -24,8 +24,67 @@ DAK requires the following packages for installation:
 - phenograph >=
 
 
+## Usage
+
+### Import MUSE python package
+After installation, import MUSE by
+
+```python
+import muse_sc as muse
+```
+
+### Learn MUSE features on multi-modality data
+MUSE requires feature matrices (`data_x` and `data_y`) and inital sample labels (`label_x` and `label_y`) from two modalities for model training. 
+
+```python
+z, x_hat, y_hat, h_x, h_y = muse.muse_fit_predict(data_x,
+                                                  data_y,
+                                                  label_x,
+                                                  label_y,
+                                                  latent_dim=100,
+                                                  n_epochs=500,
+                                                  lambda_regul=5,
+                                                  lambda_super=5)
+```
+where 
+
+```
+Parameters:
+
+  data_x:       input for transcript modality; matrix of  n * p, where n = number of cells, p = number of genes.
+  data_y:       input for morphological modality; matrix of n * q, where n = number of cells, q is the feature dimension.
+  label_x:      initial reference cluster label for transcriptional modality.
+  label_y:      inital reference cluster label for morphological modality.
+  latent_dim:   feature dimension of joint latent representation.
+  n_epochs:     maximal epoch used in training.
+  lambda_regul: weight for regularization term in the loss function.
+  lambda_super: weight for supervised learning loss in the loss function.
+
+
+Outputs:
+
+  z:            joint latent representation learned by MUSE.
+  x_hat:        reconstructed feature matrix corresponding to input data_x.
+  y_hat:        reconstructed feature matrix corresponding to input data_y.
+  h_x:          modality-specific latent representation corresponding to data_x.
+  h_y:          modality-specific latent representation corresponding to data_y.
+```
+
+Inital reference labels (`label_x` and `label_y`) can either be provided by a modality-specific method (eg. use scScope for transcript feature learning and obtain cell clusters) or simply use general feature learning and cluster methods. We provide a demonstration to use PCA to get reference labels in `MUSE_demo.ipynb`.
+
+### Subpopulation analysis
+After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (https://github.com/jacoblevine/PhenoGraph). It can automatically determine the optimal cluster number. 
+
+```python
+import phenograph
+label_MUSE, _,  _ = phenograph.cluster(z)
+
+```
+
 ## Copyright
 Software provided as is under **MIT License**.
+
+Copyright (c) 2020 Altschuler and Wu Lab
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
