@@ -19,15 +19,143 @@ MUSE combines features from transcripts (x) and morphology (y) into a joint late
 
 ## MUSE software package
 
-DAK requires the following packages for installation:
+MUSE requires the following packages for installation:
 
 - Python >= 3.6
-- TensorFlow-GPU >= 1.4.1
-- (TensorFlow >= 1.4.1 if only use CPU) 
-- Numpy >= 1.13.0
-- Scipy >= 1.0.0
-- phenograph >=
+- TensorFlow-GPU >= 1.14.0
+- (TensorFlow >= 1.14.0 if only use CPU) 
+- Numpy >= 1.16.2
+- Scipy >= 1.1.1
+- phenograph >= 1.5.2
 
+To install package, use
+```terminal
+pip install muse_sc
+```
+
+## Usage
+
+### Import MUSE python package
+After installation, import MUSE by
+
+```python
+import muse_sc as muse
+```
+
+### Learn MUSE features on multi-modality data
+MUSE requires feature matrices (`data_x` and `data_y`) and inital sample labels (`label_x` and `label_y`) from two modalities for model training. 
+
+```python
+z, x_hat, y_hat, h_x, h_y = muse.muse_fit_predict(data_x,
+                                                  data_y,
+                                                  label_x,
+                                                  label_y,
+                                                  latent_dim=100,
+                                                  n_epochs=500,
+                                                  lambda_regul=5,
+                                                  lambda_super=5)
+```
+where 
+
+```
+Parameters:
+
+  data_x:       input for transcript modality; matrix of  n * p, where n = number of cells, p = number of genes.
+  data_y:       input for morphological modality; matrix of n * q, where n = number of cells, q is the feature dimension.
+  label_x:      initial reference cluster label for transcriptional modality.
+  label_y:      inital reference cluster label for morphological modality.
+  latent_dim:   feature dimension of joint latent representation.
+  n_epochs:     maximal epoch used in training.
+  lambda_regul: weight for regularization term in the loss function.
+  lambda_super: weight for supervised learning loss in the loss function.
+
+
+Outputs:
+
+  z:            joint latent representation learned by MUSE.
+  x_hat:        reconstructed feature matrix corresponding to input data_x.
+  y_hat:        reconstructed feature matrix corresponding to input data_y.
+  h_x:          modality-specific latent representation corresponding to data_x.
+  h_y:          modality-specific latent representation corresponding to data_y.
+```
+
+Inital reference labels (`label_x` and `label_y`) can either be provided by a modality-specific method (eg. use scScope for transcript feature learning and obtain cell clusters) or simply use general feature learning and cluster methods. We provide a demonstration to use PCA to get reference labels in `MUSE_demo.ipynb`.
+
+### Subpopulation analysis
+After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (https://github.com/jacoblevine/PhenoGraph). It can automatically determine the optimal cluster number. 
+
+```python
+import phenograph
+label_MUSE, _,  _ = phenograph.cluster(z)
+
+```
+
+## Simulation tool for multi-modal single-cell data
+![avatar](./simulation.png)
+**Fig. 3 | The simulation framework to generate single-cell profiles with two modalties.**
+
+We design a simulation pipeline to generate cell profiles where ground truth subpupulations are known. We assume the true cell subpopulations can only be partially observed from each modality alone. To run the simulator, 
+
+```python
+from __future__ import print_function
+import numpy as np
+import random
+from copy import deepcopy
+
+data = simulation.multi_modal_simulator(n_clusters, n,
+                                        d_1, d_2,
+                                        k,
+                                        sigma_1, sigma_2,
+                                        decay_coef_1, decay_coef_2,
+                                        merge_prob)
+
+data_a = data['data_a_dropout']
+data_b = data['data_b_dropout']
+label_a = data['data_a_label']
+label_b = data['data_b_label']
+label_true = data['true_cluster']
+
+```
+where
+
+```
+Parameters:
+
+  n_clusters:       number of ground truth clusters.
+  n:                number of cells to simulate.
+  d_1:              dimension of features for transcript modality.
+  d_2:              dimension of features for morphological modality.
+  k:                dimension of latent code to generate simulate data (for both modality)
+  sigma_1:          variance of gaussian noise for transcript modality.
+  sigma_2:          variance of gaussian noise for morphological modality.
+  decay_coef_1:     decay coefficient of dropout rate for transcript modality.
+  decay_coef_2:     decay coefficient of dropout rate for morphological modality.
+  merge_prob:       probability to merge neighbor clusters for the generation of modality-specific
+                    clusters (same for both modalities)
+
+
+Outputs:
+
+  a dataframe with keys as follows
+
+  'true_cluster':   true cell clusters, a vector of length n
+
+  'data_a_full':    feature matrix of transcript without dropouts
+  'data_a_dropout': feature matrix of transcript with dropouts
+  'data_a_label':   cluster labels to generate transcript features after merging
+
+  'data_b_full':    feature matrix of morphology without dropouts
+  'data_b_dropout': feature matrix of morphology with dropouts
+  'data_b_label':   cluster labels to generate morphological features after merging
+```
+
+## Demonstration
+We provide a jupyter notebook (see `MUSE_demo.ipynb`) for the demonstration of applying MUSE on a simulated dataset where ground truth subpopulations are known. The denomstration includes:
+
+1. Generation of simulated data;
+2. Analyses of each single modality and identify subpopulations;
+3. Combined analysis using MUSE;
+4. Visualization of results and quantification of the subpopulation accuracy.
 
 ## Copyright
 Software provided as is under **MIT License**.
