@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-import muse_architecture as muse_model
+from .muse_architecture import structured_embedding
 from scipy.spatial.distance import pdist
 import phenograph
 
@@ -17,7 +17,7 @@ def muse_fit_predict(data_x,
                      lambda_super=5):
     """
         MUSE model fitting and predicting:
-    	  This function is used to train the MUSE model on multi-modality data
+          This function is used to train the MUSE model on multi-modality data
 
         Parameters:
           data_x:       input for transcript modality; matrix of  n * p, where n = number of cells, p = number of genes.
@@ -45,10 +45,9 @@ def muse_fit_predict(data_x,
     n_hidden = 128  # number of hidden node in neural network
     learn_rate = 1e-4  # learning rate in the optimization
     batch_size = 64  # number of cells in the training batch
-    n_epochs_init = 100  # number of training epoch in model initialization
+    n_epochs_init = 200  # number of training epoch in model initialization
     print_epochs = 50  # epoch interval to display the current training loss
     cluster_update_epoch = 200  # epoch interval to update modality-specific clusters
-    keep_prob_val = 1  # keep probability in training dropout
 
     # read data-specific parameters from inputs
     feature_dim_x = data_x.shape[1]
@@ -74,22 +73,18 @@ def muse_fit_predict(data_x,
     triplet_lambda = tf.placeholder(tf.float32, name='triplet_lambda')
     triplet_margin = tf.placeholder(tf.float32, name='triplet_margin')
 
-    # dropout
-    keep_prob = tf.placeholder(tf.float32, name='keep_prob')
-
     # network architecture
     z, x_hat, y_hat, encode_x, encode_y, loss, \
     reconstruction_error, weight_penalty, \
-    trip_loss_x, trip_loss_y = muse_model.structured_embedding(x,
-                                                               y,
-                                                               ref_label_x,
-                                                               ref_label_y,
-                                                               latent_dim,
-                                                               triplet_margin,
-                                                               n_hidden,
-                                                               keep_prob=keep_prob,
-                                                               lasso_lambda=lambda_regul,
-                                                               triplet_lambda=triplet_lambda)
+    trip_loss_x, trip_loss_y = structured_embedding(x,
+                                                    y,
+                                                    ref_label_x,
+                                                    ref_label_y,
+                                                    latent_dim,
+                                                    triplet_margin,
+                                                    n_hidden,
+                                                    lambda_regul,
+                                                    triplet_lambda)
     # optimization operator
     train_op = tf.train.AdamOptimizer(learn_rate).minimize(loss)
 
@@ -101,8 +96,7 @@ def muse_fit_predict(data_x,
             """ initialization of autoencoder architecture for MUSE """
             print('MUSE initialization')
             # global parameter initialization
-            sess.run(tf.global_variables_initializer(), feed_dict={keep_prob: keep_prob_val,
-                                                                   triplet_lambda: 0,
+            sess.run(tf.global_variables_initializer(), feed_dict={triplet_lambda: 0,
                                                                    triplet_margin: 0})
 
             for epoch in range(n_epochs_init):
@@ -123,7 +117,6 @@ def muse_fit_predict(data_x,
                                         y: batch_y_input,
                                         ref_label_x: np.zeros(batch_x_input.shape[0]),
                                         ref_label_y: np.zeros(batch_y_input.shape[0]),
-                                        keep_prob: keep_prob_val,
                                         triplet_lambda: 0,
                                         triplet_margin: 0})
 
@@ -135,7 +128,6 @@ def muse_fit_predict(data_x,
                                             y: data_train_y,
                                             ref_label_x: np.zeros(data_train_x.shape[0]),  # no use as triplet_lambda=0
                                             ref_label_y: np.zeros(data_train_y.shape[0]),  # no use as triplet_lambda=0
-                                            keep_prob: keep_prob_val,
                                             triplet_lambda: 0,
                                             triplet_margin: 0})
 
@@ -150,7 +142,6 @@ def muse_fit_predict(data_x,
                                     y: data_y,
                                     ref_label_x: np.zeros(data_x.shape[0]),
                                     ref_label_y: np.zeros(data_y.shape[0]),
-                                    keep_prob: keep_prob_val,
                                     triplet_lambda: 0,
                                     triplet_margin: 0})
             latent_pd_matrix = pdist(latent, 'euclidean')
@@ -181,7 +172,6 @@ def muse_fit_predict(data_x,
                                         y: batch_y_input,
                                         ref_label_x: label_x_input,
                                         ref_label_y: label_y_input,
-                                        keep_prob: keep_prob_val,
                                         triplet_lambda: lambda_super,
                                         triplet_margin: margin_estimate})
 
@@ -193,7 +183,6 @@ def muse_fit_predict(data_x,
                                             y: data_train_y,
                                             ref_label_x: label_train_x,
                                             ref_label_y: label_train_y,
-                                            keep_prob: keep_prob_val,
                                             triplet_lambda: lambda_super,
                                             triplet_margin: margin_estimate})
 
@@ -208,7 +197,6 @@ def muse_fit_predict(data_x,
                                     y: data_y,
                                     ref_label_x: label_x,
                                     ref_label_y: label_y,
-                                    keep_prob: keep_prob_val,
                                     triplet_lambda: lambda_super,
                                     triplet_margin: margin_estimate})
 
@@ -240,7 +228,6 @@ def muse_fit_predict(data_x,
                                         y: batch_y_input,
                                         ref_label_x: batch_label_x_input,
                                         ref_label_y: batch_label_y_input,
-                                        keep_prob: keep_prob_val,
                                         triplet_lambda: lambda_super,
                                         triplet_margin: margin_estimate})
 
@@ -252,7 +239,6 @@ def muse_fit_predict(data_x,
                                             y: data_train_y,
                                             ref_label_x: label_train_x,
                                             ref_label_y: label_train_y,
-                                            keep_prob: keep_prob_val,
                                             triplet_lambda: lambda_super,
                                             triplet_margin: margin_estimate})
                     # print cost every epoch
@@ -268,7 +254,6 @@ def muse_fit_predict(data_x,
                                             y: data_y,
                                             ref_label_x: label_x,
                                             ref_label_y: label_y,
-                                            keep_prob: keep_prob_val,
                                             triplet_lambda: lambda_super,
                                             triplet_margin: margin_estimate})
 
@@ -283,7 +268,6 @@ def muse_fit_predict(data_x,
                                     y: data_y,
                                     ref_label_x: label_x,  # no effects to representations
                                     ref_label_y: label_y,  # no effects to representations
-                                    keep_prob: keep_prob_val,
                                     triplet_lambda: lambda_super,
                                     triplet_margin: margin_estimate})
 

@@ -5,7 +5,7 @@ from .triplet_loss import batch_hard_triplet_loss
 
 
 def structured_embedding(x, y, label_x, label_y, dim_z, triplet_margin,
-                         n_hidden, keep_prob, weight_penalty, triplet_lambda):
+                         n_hidden, weight_penalty, triplet_lambda):
     """
     Construct structure and loss function of MUSE
 
@@ -17,7 +17,6 @@ def structured_embedding(x, y, label_x, label_y, dim_z, triplet_margin,
         dim_z:          dimension of joint latent representation
         triplet_margin: margin for triplet loss
         n_hidden:       hidden node number for encoder and decoder layers
-        keep_prob:      keep probability for dropout in learning
         weight_penalty: weight for sparse penalty
         triplet_lambda: weight for triplet loss
 
@@ -47,11 +46,11 @@ def structured_embedding(x, y, label_x, label_y, dim_z, triplet_margin,
 
     with tf.variable_scope("decoder_x"):
         z_x = tf.matmul(z, w_x)
-        x_hat = decoder(z_x, n_hidden, x.get_shape()[1], keep_prob)
+        x_hat = decoder(z_x, n_hidden, x.get_shape()[1])
 
     with tf.variable_scope("decoder_y"):
         z_y = tf.matmul(z, w_y)
-        y_hat = decoder(z_y, n_hidden, y.get_shape()[1], keep_prob)
+        y_hat = decoder(z_y, n_hidden, y.get_shape()[1])
 
     # sparse penalty
     sparse_x = tf.sqrt(tf.reduce_sum(tf.reduce_sum(tf.square(w_x), axis=1)))
@@ -146,7 +145,7 @@ def encoder(x, n_hidden):
     return o
 
 
-def decoder(z, n_hidden, n_output, keep_prob):
+def decoder(z, n_hidden, n_output):
     """
     Decoder for single modality
 
@@ -154,7 +153,6 @@ def decoder(z, n_hidden, n_output, keep_prob):
         z:              latent representation for single modality
         n_hidden:       hidden node number in decoder
         n_output:       feature dimension of original data
-        keep_prob:      keep probability
 
     Outputs:
         y:              reconstructed feature
@@ -172,14 +170,12 @@ def decoder(z, n_hidden, n_output, keep_prob):
     b0 = tf.get_variable('b0_d', [n_hidden], initializer=b_init)
     h0 = tf.matmul(z, w0) + b0
     h0 = tf.nn.elu(h0)
-    h0 = tf.nn.dropout(h0, keep_prob)
 
     # 2nd hidden layer
     w1 = tf.get_variable('w1_d', [h0.get_shape()[1], n_hidden], initializer=w_init)
     b1 = tf.get_variable('b1_d', [n_hidden], initializer=b_init)
     h1 = tf.matmul(h0, w1) + b1
     h1 = tf.nn.tanh(h1)
-    h1 = tf.nn.dropout(h1, keep_prob)
 
     # output layer-mean
     wo = tf.get_variable('wo_d', [h1.get_shape()[1], n_output], initializer=w_init)
