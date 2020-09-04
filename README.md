@@ -26,12 +26,19 @@ MUSE requires the following packages for installation:
 - (TensorFlow >= 1.14.0 if only use CPU) 
 - Numpy >= 1.16.2
 - Scipy >= 1.1.1
-- phenograph >= 1.5.2 (install from https://github.com/jacoblevine/PhenoGraph)
+- phenograph >= 1.5.2
 
-To install package, use
+To install MUSE package, use
 ```terminal
 pip install muse_sc
 ```
+
+Most python packages can be installed through `pip` command, while phenograph python package can be installed by 
+```terminal
+pip3 install git+https://github.com/jacoblevine/phenograph.git
+```
+
+Details are available at the project page: https://github.com/jacoblevine/PhenoGraph .
 
 ## Usage
 
