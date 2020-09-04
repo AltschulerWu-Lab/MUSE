@@ -1,8 +1,10 @@
 import numpy as np
-import tensorflow as tf
 from .muse_architecture import structured_embedding
 from scipy.spatial.distance import pdist
 import phenograph
+import tensorflow.compat.v1 as tf
+
+tf.disable_v2_behavior()
 
 """ Model fitting and feature prediction of MUSE """
 
@@ -87,7 +89,7 @@ def muse_fit_predict(data_x,
                                                     triplet_lambda)
     # optimization operator
     train_op = tf.train.AdamOptimizer(learn_rate).minimize(loss)
-
+    print('++++++++++ MUSE for multi-modality single-cell analysis ++++++++++')
     """ MUSE optimization """
     total_batch = int(n_sample / batch_size)
 
@@ -270,5 +272,7 @@ def muse_fit_predict(data_x,
                                 ref_label_y: label_y,  # no effects to representations
                                 triplet_lambda: lambda_super,
                                 triplet_margin: margin_estimate})
+
+        print('++++++++++ MUSE completed ++++++++++')
 
     return latent, reconstruct_x, reconstruct_y, latent_x, latent_y

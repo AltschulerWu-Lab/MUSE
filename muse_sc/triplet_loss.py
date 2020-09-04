@@ -3,7 +3,9 @@ Triplet loss modified from https://github.com/omoindrot/tensorflow-triplet-loss/
 Author: Olivier Moindrot from Stanford
 '''
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+tf.disable_v2_behavior()
 
 
 def _pairwise_distances(embeddings, squared=False):

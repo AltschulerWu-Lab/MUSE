@@ -1,6 +1,7 @@
-import tensorflow as tf
 from .triplet_loss import batch_hard_triplet_loss
+import tensorflow.compat.v1 as tf
 
+tf.disable_v2_behavior()
 """ model structure of MUSE """
 
 
@@ -101,7 +102,7 @@ def multiview_encoder(x, y, n_hidden, dim_z):
         h_y = encoder(y, n_hidden)
 
     # combine h_x and h_y to joint latent representation
-    w_init = tf.contrib.layers.variance_scaling_initializer()
+    w_init = tf.keras.initializers.VarianceScaling()
     b_init = tf.constant_initializer(0.)
     h = tf.concat([h_x, h_y], 1)
     wo = tf.get_variable('wo', [h.get_shape()[1], dim_z], initializer=w_init)
@@ -127,7 +128,7 @@ def encoder(x, n_hidden):
     """
 
     # initializers
-    w_init = tf.contrib.layers.variance_scaling_initializer()
+    w_init = tf.keras.initializers.VarianceScaling()
     b_init = tf.constant_initializer(0.)
 
     # 1st hidden layer
@@ -162,7 +163,7 @@ def decoder(z, n_hidden, n_output):
     """
 
     # initializers
-    w_init = tf.contrib.layers.variance_scaling_initializer()
+    w_init = tf.keras.initializers.VarianceScaling()
     b_init = tf.constant_initializer(0.)
 
     # 1st hidden layer
