@@ -33,7 +33,7 @@ To install MUSE package, use
 pip install muse_sc
 ```
 
-Most python packages can be installed through `pip` command, while phenograph python package can be installed by 
+Most required python packages can be installed through `pip` command, while phenograph python package can be installed by 
 ```terminal
 pip3 install git+https://github.com/jacoblevine/phenograph.git
 ```
