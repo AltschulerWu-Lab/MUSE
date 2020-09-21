@@ -7,6 +7,9 @@ This is a Jupyter Notebook for the demonstration of runing MUSE. There are three
 3. Perform clustering and identify subpopulation on latent representations.
 4. Visualize the clusters and quantify the accuracy.
 
+![avatar](./workflow.png)
+**Fig. 1 | The analysis workflow of MUSE.** **1)** From the same cells, two profiles were obtained; **2)** MUSE combined two modality information into a joint representations; **3)** Each representation were used as features of each cell; **4)** On latent representations, graph clustering was used to identify cell groups that were close in the latent space; **5)** Based on cell clusters, we could further perform differential analysis on either morphological and transcriptional modality, to identify different cell properties.
+
 Detailed introduction for each step was provided in the notebook.
 
 ## Depdendency of running the code
