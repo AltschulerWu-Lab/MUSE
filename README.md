@@ -25,7 +25,7 @@ MUSE requires the following packages for installation:
 - TensorFlow-GPU >= 1.14.0
 - (TensorFlow >= 1.14.0 if only use CPU) 
 - Numpy >= 1.16.2
-- 1.5.1 <= Scipy
+- Scipy >= 1.5.1
 - phenograph >= 1.5.4
 
 To install MUSE package, use
