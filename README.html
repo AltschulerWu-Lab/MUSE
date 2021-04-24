@@ -1063,14 +1063,14 @@ body .markdown-body
 .highlight .vi{color:teal}
 .highlight .il{color:#009999}
 .highlight .gc{color:#999;background-color:#EAF2F5}
-</style><title>README</title></head><body><article class="markdown-body"><h1 id="muse-multi-modality-structured-embedding-for-single-cell-spatial-transcriptomics-analysis">MUSE: multi-modality structured embedding for single-cell spatial transcriptomics analysis<a class="headerlink" href="#muse-multi-modality-structured-embedding-for-single-cell-spatial-transcriptomics-analysis" title="Permanent link"></a></h1>
-<p>MUSE is a deep learning approach characterizing tissue composition through combined analysis of morphologies and transcriptional states for single-cell spatial transcriptomics data.</p>
+</style><title>README</title></head><body><article class="markdown-body"><h1 id="muse-multi-modality-structured-embedding-for-spatially-resolved-transcriptomics-analysis">MUSE: multi-modality structured embedding for spatially resolved transcriptomics analysis<a class="headerlink" href="#muse-multi-modality-structured-embedding-for-spatially-resolved-transcriptomics-analysis" title="Permanent link"></a></h1>
+<p>MUSE is a deep learning approach characterizing tissue composition through combined analysis of morphologies and transcriptional states for spatially resolved transcriptomics data.</p>
 <blockquote>
 <p>Citation: 
-Characterizing tissue composition through combined analysis of single-cell morphologies and transcriptional states. Feng Bao<sup>*</sup>, Yue Deng<sup>*</sup>, Sen Wan, Bo Wang, Qionghai Dai<sup>#</sup>, Steven J. Altschuler<sup>#</sup>, Lani F. Wu<sup>#</sup></p>
+Characterizing tissue composition through combined analysis of morphologies and transcriptional states. Feng Bao<sup>*</sup>, Yue Deng<sup>*</sup>, Sen Wan, Bo Wang, Qionghai Dai<sup>#</sup>, Steven J. Altschuler<sup>#</sup>, Lani F. Wu<sup>#</sup></p>
 </blockquote>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
-<p>Decomposing cell heterogeniety of complex biological systems is an important step to the comprehensive understanding of their organizations and mechanisms.  Morphologies are the most direct and distinguishable  features for  cell differences.  Single-cell profiling from morphologies has been a powerful and widely used tool to characterize cell identities and quantify cellular/subcellular dynamics at high temporal/spatial resolution and large scale. Complementarily, transcriptional profiles represent  cellular activities. The transcriptional differences among cells can reveal different cell states, linages and subpopulations. With the development of single-cell spatial transcriptomics, we can profile morpholigiclal and transcriptonal properties from the same cell simutaneously. We developed the multi-modality structural embedding (MUSE), a deep learning approach that aggregates the heterogeneity from morphologies and transcripts and dissects cell subpopulations at finer resolution.</p>
+<p>Decomposing cell heterogeniety of complex biological systems is an important step to the comprehensive understanding of their organizations and mechanisms.  Morphologies are the most direct and distinguishable  features for  cell differences. Optical profiling from morphologies has been a powerful and widely used tool to characterize cell identities and quantify cellular/subcellular dynamics at high temporal/spatial resolution and large scale. Complementarily, transcriptional profiles represent  cellular activities. The transcriptional differences among cells can reveal different cell states, linages and subpopulations. With the development of single-cell spatial transcriptomics, we can profile morpholigiclal and transcriptonal properties from the same cell simutaneously. We developed the multi-modality structural embedding (MUSE), a deep learning approach that aggregates the heterogeneity from morphologies and transcripts and dissects tissue subpopulations at finer resolution.</p>
 <p><img alt="avatar" src="/Users/fbao/OneDrive%20-%20University%20of%20California%2C%20San%20Francisco/Research/MUCE/MUSE-shared/MUSE/overview.png" />
 <strong>Fig. 1 | An overview of the study.</strong> (<strong>a</strong>) Single-cell spatial transcriptomics technologies provide cell infromation from both transcriptional and morphological modalities, which reveal cell heterogeneity from different angles. (<strong>b</strong>) Cell differences in the tissue can be characterized based on each single modalties. (<strong>c</strong>) By combining both heterogeneities from two modalities, fine-grained cell subpopulations can be revealed.</p>
 <p><img alt="avatar" src="/Users/fbao/OneDrive%20-%20University%20of%20California%2C%20San%20Francisco/Research/MUCE/MUSE-shared/MUSE/method.png" />
@@ -1083,13 +1083,13 @@ Characterizing tissue composition through combined analysis of single-cell morph
 <li>TensorFlow-GPU &gt;= 1.14.0</li>
 <li>(TensorFlow &gt;= 1.14.0 if only use CPU) </li>
 <li>Numpy &gt;= 1.16.2</li>
-<li>1.4.1&gt;=Scipy &gt;= 1.1.1</li>
+<li>Scipy = 1.4.1</li>
 <li>phenograph &gt;= 1.5.4</li>
 </ul>
 <p>To install MUSE package, use
 <div class="highlight"><pre>pip install muse_sc
 </pre></div></p>
-<p>All required python packages can be installed through <code>pip</code> command.</p>
+<p>All required python packages can be installed through <code>pip</code> command. We note the latest PhenoGraph (April 24th, 2021) can not work with the latest Scipy well. Therefore we suggest to use scipy==1.4.1 to avoid conflicts.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
 <h3 id="import-muse-python-package">Import MUSE python package<a class="headerlink" href="#import-muse-python-package" title="Permanent link"></a></h3>
 <p>After installation, import MUSE by</p>
@@ -1131,7 +1131,7 @@ Outputs:
 
 <p>Inital reference labels (<code>label_x</code> and <code>label_y</code>) can either be provided by a modality-specific method (eg. use scScope for transcript feature learning and obtain cell clusters) or simply use general feature learning and cluster methods. We provide a demonstration to use PCA to get reference labels in <code>MUSE_demo.ipynb</code>.</p>
 <h3 id="subpopulation-analysis">Subpopulation analysis<a class="headerlink" href="#subpopulation-analysis" title="Permanent link"></a></h3>
-<p>After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (<a class="magiclink magiclink-github magiclink-repository" href="https://github.com/jacoblevine/PhenoGraph" title="GitHub Repository: jacoblevine/PhenoGraph">jacoblevine/PhenoGraph</a>). It can automatically determine the optimal cluster number. We note the recent update of PhenoGraph is incapable with the latest scipy version. We suggest to use scipy==1.4.0.</p>
+<p>After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (<a class="magiclink magiclink-github magiclink-repository" href="https://github.com/jacoblevine/PhenoGraph" title="GitHub Repository: jacoblevine/PhenoGraph">jacoblevine/PhenoGraph</a>). It can automatically determine the optimal cluster number. </p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">phenograph</span>
 <span class="n">label_MUSE</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span>  <span class="n">_</span> <span class="o">=</span> <span class="n">phenograph</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
