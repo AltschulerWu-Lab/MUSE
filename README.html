@@ -118,23 +118,28 @@ body .markdown-body
   padding: 0;
 }
 
-.markdown-body .codehilitetable {
+.markdown-body .codehilitetable,
+.markdown-body .highlighttable {
   border: 0;
   border-spacing: 0;
 }
 
-.markdown-body .codehilitetable tr {
+.markdown-body .codehilitetable tr,
+.markdown-body .highlighttable {
   border: 0;
 }
 
 .markdown-body .codehilitetable pre,
-.markdown-body .codehilitetable div.codehilite {
+.markdown-body .codehilitetable div.codehilite,
+.markdown-body .highlighttable pre,
+.markdown-body .highlighttable div.highlight {
   margin: 0;
 }
 
 .markdown-body .linenos,
 .markdown-body .code,
-.markdown-body .codehilitetable td {
+.markdown-body .codehilitetable td,
+.markdown-body .highlighttable td {
   border: 0;
   padding: 0;
 }
@@ -517,11 +522,13 @@ body .markdown-body
   border: 0;
 }
 
-.markdown-body .codehilite {
+.markdown-body .codehilite,
+.markdown-body .highlight {
   margin-bottom: 16px;
 }
 
 .markdown-body .codehilite pre,
+.markdown-body .highlight pre,
 .markdown-body pre {
   padding: 16px;
   overflow: auto;
@@ -531,7 +538,8 @@ body .markdown-body
   border-radius: 3px;
 }
 
-.markdown-body .codehilite pre {
+.markdown-body .codehilite pre,
+.markdown-body .highlight pre {
   margin-bottom: 0;
   word-break: normal;
 }
@@ -993,68 +1001,68 @@ body .markdown-body
   }
 }
 </style><style>/*GitHub*/
-.codehilite {background-color:#fff;color:#333333;}
-.codehilite .hll {background-color:#ffffcc;}
-.codehilite .c{color:#999988;font-style:italic}
-.codehilite .err{color:#a61717;background-color:#e3d2d2}
-.codehilite .k{font-weight:bold}
-.codehilite .o{font-weight:bold}
-.codehilite .cm{color:#999988;font-style:italic}
-.codehilite .cp{color:#999999;font-weight:bold}
-.codehilite .c1{color:#999988;font-style:italic}
-.codehilite .cs{color:#999999;font-weight:bold;font-style:italic}
-.codehilite .gd{color:#000000;background-color:#ffdddd}
-.codehilite .ge{font-style:italic}
-.codehilite .gr{color:#aa0000}
-.codehilite .gh{color:#999999}
-.codehilite .gi{color:#000000;background-color:#ddffdd}
-.codehilite .go{color:#888888}
-.codehilite .gp{color:#555555}
-.codehilite .gs{font-weight:bold}
-.codehilite .gu{color:#800080;font-weight:bold}
-.codehilite .gt{color:#aa0000}
-.codehilite .kc{font-weight:bold}
-.codehilite .kd{font-weight:bold}
-.codehilite .kn{font-weight:bold}
-.codehilite .kp{font-weight:bold}
-.codehilite .kr{font-weight:bold}
-.codehilite .kt{color:#445588;font-weight:bold}
-.codehilite .m{color:#009999}
-.codehilite .s{color:#dd1144}
-.codehilite .n{color:#333333}
-.codehilite .na{color:teal}
-.codehilite .nb{color:#0086b3}
-.codehilite .nc{color:#445588;font-weight:bold}
-.codehilite .no{color:teal}
-.codehilite .ni{color:purple}
-.codehilite .ne{color:#990000;font-weight:bold}
-.codehilite .nf{color:#990000;font-weight:bold}
-.codehilite .nn{color:#555555}
-.codehilite .nt{color:navy}
-.codehilite .nv{color:teal}
-.codehilite .ow{font-weight:bold}
-.codehilite .w{color:#bbbbbb}
-.codehilite .mf{color:#009999}
-.codehilite .mh{color:#009999}
-.codehilite .mi{color:#009999}
-.codehilite .mo{color:#009999}
-.codehilite .sb{color:#dd1144}
-.codehilite .sc{color:#dd1144}
-.codehilite .sd{color:#dd1144}
-.codehilite .s2{color:#dd1144}
-.codehilite .se{color:#dd1144}
-.codehilite .sh{color:#dd1144}
-.codehilite .si{color:#dd1144}
-.codehilite .sx{color:#dd1144}
-.codehilite .sr{color:#009926}
-.codehilite .s1{color:#dd1144}
-.codehilite .ss{color:#990073}
-.codehilite .bp{color:#999999}
-.codehilite .vc{color:teal}
-.codehilite .vg{color:teal}
-.codehilite .vi{color:teal}
-.codehilite .il{color:#009999}
-.codehilite .gc{color:#999;background-color:#EAF2F5}
+.highlight {background-color:#fff;color:#333333;}
+.highlight .hll {background-color:#ffffcc;}
+.highlight .c{color:#999988;font-style:italic}
+.highlight .err{color:#a61717;background-color:#e3d2d2}
+.highlight .k{font-weight:bold}
+.highlight .o{font-weight:bold}
+.highlight .cm{color:#999988;font-style:italic}
+.highlight .cp{color:#999999;font-weight:bold}
+.highlight .c1{color:#999988;font-style:italic}
+.highlight .cs{color:#999999;font-weight:bold;font-style:italic}
+.highlight .gd{color:#000000;background-color:#ffdddd}
+.highlight .ge{font-style:italic}
+.highlight .gr{color:#aa0000}
+.highlight .gh{color:#999999}
+.highlight .gi{color:#000000;background-color:#ddffdd}
+.highlight .go{color:#888888}
+.highlight .gp{color:#555555}
+.highlight .gs{font-weight:bold}
+.highlight .gu{color:#800080;font-weight:bold}
+.highlight .gt{color:#aa0000}
+.highlight .kc{font-weight:bold}
+.highlight .kd{font-weight:bold}
+.highlight .kn{font-weight:bold}
+.highlight .kp{font-weight:bold}
+.highlight .kr{font-weight:bold}
+.highlight .kt{color:#445588;font-weight:bold}
+.highlight .m{color:#009999}
+.highlight .s{color:#dd1144}
+.highlight .n{color:#333333}
+.highlight .na{color:teal}
+.highlight .nb{color:#0086b3}
+.highlight .nc{color:#445588;font-weight:bold}
+.highlight .no{color:teal}
+.highlight .ni{color:purple}
+.highlight .ne{color:#990000;font-weight:bold}
+.highlight .nf{color:#990000;font-weight:bold}
+.highlight .nn{color:#555555}
+.highlight .nt{color:navy}
+.highlight .nv{color:teal}
+.highlight .ow{font-weight:bold}
+.highlight .w{color:#bbbbbb}
+.highlight .mf{color:#009999}
+.highlight .mh{color:#009999}
+.highlight .mi{color:#009999}
+.highlight .mo{color:#009999}
+.highlight .sb{color:#dd1144}
+.highlight .sc{color:#dd1144}
+.highlight .sd{color:#dd1144}
+.highlight .s2{color:#dd1144}
+.highlight .se{color:#dd1144}
+.highlight .sh{color:#dd1144}
+.highlight .si{color:#dd1144}
+.highlight .sx{color:#dd1144}
+.highlight .sr{color:#009926}
+.highlight .s1{color:#dd1144}
+.highlight .ss{color:#990073}
+.highlight .bp{color:#999999}
+.highlight .vc{color:teal}
+.highlight .vg{color:teal}
+.highlight .vi{color:teal}
+.highlight .il{color:#009999}
+.highlight .gc{color:#999;background-color:#EAF2F5}
 </style><title>README</title></head><body><article class="markdown-body"><h1 id="muse-multi-modality-structured-embedding-for-single-cell-spatial-transcriptomics-analysis">MUSE: multi-modality structured embedding for single-cell spatial transcriptomics analysis<a class="headerlink" href="#muse-multi-modality-structured-embedding-for-single-cell-spatial-transcriptomics-analysis" title="Permanent link"></a></h1>
 <p>MUSE is a deep learning approach characterizing tissue composition through combined analysis of morphologies and transcriptional states for single-cell spatial transcriptomics data.</p>
 <blockquote>
@@ -1063,9 +1071,9 @@ Characterizing tissue composition through combined analysis of single-cell morph
 </blockquote>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
 <p>Decomposing cell heterogeniety of complex biological systems is an important step to the comprehensive understanding of their organizations and mechanisms.  Morphologies are the most direct and distinguishable  features for  cell differences.  Single-cell profiling from morphologies has been a powerful and widely used tool to characterize cell identities and quantify cellular/subcellular dynamics at high temporal/spatial resolution and large scale. Complementarily, transcriptional profiles represent  cellular activities. The transcriptional differences among cells can reveal different cell states, linages and subpopulations. With the development of single-cell spatial transcriptomics, we can profile morpholigiclal and transcriptonal properties from the same cell simutaneously. We developed the multi-modality structural embedding (MUSE), a deep learning approach that aggregates the heterogeneity from morphologies and transcripts and dissects cell subpopulations at finer resolution.</p>
-<p><img alt="avatar" src="/Users/fbao/Box/Research/MUCE/MUSE-shared/MUSE/overview.png" />
+<p><img alt="avatar" src="/Users/fbao/OneDrive%20-%20University%20of%20California%2C%20San%20Francisco/Research/MUCE/MUSE-shared/MUSE/overview.png" />
 <strong>Fig. 1 | An overview of the study.</strong> (<strong>a</strong>) Single-cell spatial transcriptomics technologies provide cell infromation from both transcriptional and morphological modalities, which reveal cell heterogeneity from different angles. (<strong>b</strong>) Cell differences in the tissue can be characterized based on each single modalties. (<strong>c</strong>) By combining both heterogeneities from two modalities, fine-grained cell subpopulations can be revealed.</p>
-<p><img alt="avatar" src="/Users/fbao/Box/Research/MUCE/MUSE-shared/MUSE/method.png" />
+<p><img alt="avatar" src="/Users/fbao/OneDrive%20-%20University%20of%20California%2C%20San%20Francisco/Research/MUCE/MUSE-shared/MUSE/method.png" />
 <strong>Fig. 2 | The model architecture of MUSE</strong></p>
 <p>MUSE combines features from transcripts (x) and morphology (y) into a joint latent representation z.The self-reconstruction loss encourages the learned joint feature representation (z) to faithfully retain information from the original individual input feature modalities (x and y). The self-supervised learning exploits triple-loss functions to encourage cells with the same cluster label (i.e. with the same pseudo label in either l<sub>x</sub> or l<sub>y</sub>) to remain close—and cells with different cluster labels to remain far apart—in the joint latent space.</p>
 <h2 id="muse-software-package">MUSE software package<a class="headerlink" href="#muse-software-package" title="Permanent link"></a></h2>
@@ -1075,25 +1083,22 @@ Characterizing tissue composition through combined analysis of single-cell morph
 <li>TensorFlow-GPU &gt;= 1.14.0</li>
 <li>(TensorFlow &gt;= 1.14.0 if only use CPU) </li>
 <li>Numpy &gt;= 1.16.2</li>
-<li>Scipy &gt;= 1.1.1</li>
-<li>phenograph &gt;= 1.5.2</li>
+<li>1.4.1&gt;=Scipy &gt;= 1.1.1</li>
+<li>phenograph &gt;= 1.5.4</li>
 </ul>
 <p>To install MUSE package, use
-<div class="codehilite"><pre>pip install muse_sc
+<div class="highlight"><pre>pip install muse_sc
 </pre></div></p>
-<p>Most python packages can be installed through <code>pip</code> command, while phenograph python package can be installed by 
-<div class="codehilite"><pre>pip3 install git+https://github.com/jacoblevine/phenograph.git
-</pre></div></p>
-<p>Details are available at the project page: <a href="https://github.com/jacoblevine/PhenoGraph">https://github.com/jacoblevine/PhenoGraph</a> .</p>
+<p>All required python packages can be installed through <code>pip</code> command.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
 <h3 id="import-muse-python-package">Import MUSE python package<a class="headerlink" href="#import-muse-python-package" title="Permanent link"></a></h3>
 <p>After installation, import MUSE by</p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">muse_sc</span> <span class="kn">as</span> <span class="nn">muse</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">muse_sc</span> <span class="kn">as</span> <span class="nn">muse</span>
 </pre></div>
 
 <h3 id="learn-muse-features-on-multi-modality-data">Learn MUSE features on multi-modality data<a class="headerlink" href="#learn-muse-features-on-multi-modality-data" title="Permanent link"></a></h3>
 <p>MUSE requires feature matrices (<code>data_x</code> and <code>data_y</code>) and inital sample labels (<code>label_x</code> and <code>label_y</code>) from two modalities for model training. </p>
-<p><div class="codehilite"><pre><span class="n">z</span><span class="p">,</span> <span class="n">x_hat</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">h_x</span><span class="p">,</span> <span class="n">h_y</span> <span class="o">=</span> <span class="n">muse</span><span class="o">.</span><span class="n">muse_fit_predict</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span>
+<p><div class="highlight"><pre><span class="n">z</span><span class="p">,</span> <span class="n">x_hat</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">h_x</span><span class="p">,</span> <span class="n">h_y</span> <span class="o">=</span> <span class="n">muse</span><span class="o">.</span><span class="n">muse_fit_predict</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span>
                                                   <span class="n">data_y</span><span class="p">,</span>
                                                   <span class="n">label_x</span><span class="p">,</span>
                                                   <span class="n">label_y</span><span class="p">,</span>
@@ -1103,7 +1108,7 @@ Characterizing tissue composition through combined analysis of single-cell morph
                                                   <span class="n">lambda_super</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 where </p>
-<div class="codehilite"><pre>Parameters:
+<div class="highlight"><pre>Parameters:
 
   data_x:       input for transcript modality; matrix of  n * p, where n = number of cells, p = number of genes.
   data_y:       input for morphological modality; matrix of n * q, where n = number of cells, q is the feature dimension.
@@ -1126,16 +1131,16 @@ Outputs:
 
 <p>Inital reference labels (<code>label_x</code> and <code>label_y</code>) can either be provided by a modality-specific method (eg. use scScope for transcript feature learning and obtain cell clusters) or simply use general feature learning and cluster methods. We provide a demonstration to use PCA to get reference labels in <code>MUSE_demo.ipynb</code>.</p>
 <h3 id="subpopulation-analysis">Subpopulation analysis<a class="headerlink" href="#subpopulation-analysis" title="Permanent link"></a></h3>
-<p>After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (<a href="https://github.com/jacoblevine/PhenoGraph">https://github.com/jacoblevine/PhenoGraph</a>). It can automatically determine the optimal cluster number. </p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">phenograph</span>
+<p>After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (<a class="magiclink magiclink-github magiclink-repository" href="https://github.com/jacoblevine/PhenoGraph" title="GitHub Repository: jacoblevine/PhenoGraph">jacoblevine/PhenoGraph</a>). It can automatically determine the optimal cluster number. We note the recent update of PhenoGraph is incapable with the latest scipy version. We suggest to use scipy==1.4.0.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">phenograph</span>
 <span class="n">label_MUSE</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span>  <span class="n">_</span> <span class="o">=</span> <span class="n">phenograph</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
 
 <h2 id="simulation-tool-for-multi-modal-single-cell-data">Simulation tool for multi-modal single-cell data<a class="headerlink" href="#simulation-tool-for-multi-modal-single-cell-data" title="Permanent link"></a></h2>
-<p><img alt="avatar" src="/Users/fbao/Box/Research/MUCE/MUSE-shared/MUSE/simulation.png" />
+<p><img alt="avatar" src="/Users/fbao/OneDrive%20-%20University%20of%20California%2C%20San%20Francisco/Research/MUCE/MUSE-shared/MUSE/simulation.png" />
 <strong>Fig. 3 | The simulation framework to generate single-cell profiles with two modalties.</strong></p>
 <p>We design a simulation pipeline to generate cell profiles where ground truth subpupulations are known. We assume the true cell subpopulations can only be partially observed from each modality alone. To run the simulator, </p>
-<p><div class="codehilite"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<p><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
@@ -1154,7 +1159,7 @@ Outputs:
 <span class="n">label_true</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;true_cluster&#39;</span><span class="p">]</span>
 </pre></div>
 where</p>
-<div class="codehilite"><pre>Parameters:
+<div class="highlight"><pre>Parameters:
 
   n_clusters:       number of ground truth clusters.
   n:                number of cells to simulate.

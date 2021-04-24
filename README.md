@@ -25,20 +25,16 @@ MUSE requires the following packages for installation:
 - TensorFlow-GPU >= 1.14.0
 - (TensorFlow >= 1.14.0 if only use CPU) 
 - Numpy >= 1.16.2
-- Scipy >= 1.1.1
-- phenograph >= 1.5.2
+- 1.4.1>=Scipy >= 1.1.1
+- phenograph >= 1.5.4
 
 To install MUSE package, use
 ```terminal
 pip install muse_sc
 ```
 
-Most required python packages can be installed through `pip` command, while phenograph python package can be installed by 
-```terminal
-pip3 install git+https://github.com/jacoblevine/phenograph.git
-```
+All required python packages can be installed through `pip` command.
 
-Details are available at the project page: https://github.com/jacoblevine/PhenoGraph .
 
 ## Usage
 
@@ -89,7 +85,7 @@ Outputs:
 Inital reference labels (`label_x` and `label_y`) can either be provided by a modality-specific method (eg. use scScope for transcript feature learning and obtain cell clusters) or simply use general feature learning and cluster methods. We provide a demonstration to use PCA to get reference labels in `MUSE_demo.ipynb`.
 
 ### Subpopulation analysis
-After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (https://github.com/jacoblevine/PhenoGraph). It can automatically determine the optimal cluster number. 
+After learning joint latent representations from both modalities by MUSE, subpopulations in the tissue can be discovered by PhenoGraph (https://github.com/jacoblevine/PhenoGraph). It can automatically determine the optimal cluster number. We note the recent update of PhenoGraph is incapable with the latest scipy version. We suggest to use scipy==1.4.0.
 
 ```python
 import phenograph
