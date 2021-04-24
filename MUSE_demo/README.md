@@ -20,13 +20,13 @@ To run the code, install the following packages:
 - TensorFlow-GPU >= 1.14.0
 - (TensorFlow >= 1.14.0 if only use CPU) 
 - Numpy >= 1.16.2
-- Scipy >= 1.1.1
+- Scipy = 1.4.1
 - phenograph >= 1.5.2
 - sklearn >= 0.20.3
 - matplotlib
 - muse_sc
 
-All packages can be installed througn `pip install *` command except phenograph, which can be installed by `pip3 install git+https://github.com/jacoblevine/phenograph.git`.
+All packages can be installed througn `pip install *` command.
 
 
 
