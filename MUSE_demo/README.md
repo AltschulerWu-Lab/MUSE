@@ -1,6 +1,6 @@
 # Demonstration of Running MUSE
 
-This is a Jupyter Notebook for the demonstration of runing MUSE. There are three major functions:
+This is a Jupyter Notebook for the demonstration of runing MUSE. There are 4 major functions:
 
 1. Generate simulation data with two modalities;
 2. Run MUSE on simulated data and learn joint latent representations;
