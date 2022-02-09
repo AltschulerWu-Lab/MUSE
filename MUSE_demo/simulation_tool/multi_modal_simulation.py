@@ -52,7 +52,7 @@ def multi_modal_simulator(n_clusters,
       'data_b_label':   cluster labels to generate morphological features after merging
 
 
-    Altschuler & Wu Lab 2020.
+    Feng Bao @ Altschuler & Wu Lab @ UCSF 2022..
     Software provided as is under MIT License.
     """
 
@@ -194,7 +194,7 @@ def multi_modal_simulator_3_modalities(n_clusters,
       'data_c_full':    feature matrix of 3rd modality without dropouts
       'data_c_dropout': feature matrix of 3rd modality with dropouts
       'data_c_label':   cluster labels to generate 3rd modality features after merging
-    Feng Bao (fbao0110ATgmail.com) @ Altschuler & Wu Lab 2021.
+    Feng Bao (fbao0110ATgmail.com) @ Altschuler & Wu Lab 2022.
     Software provided as is under MIT License.
     """
 

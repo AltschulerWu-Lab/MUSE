@@ -33,7 +33,7 @@ def structured_embedding(x, y, label_x, label_y, dim_z, triplet_margin,
         trip_loss_x:    triplet loss for x
         trip_loss_y:    triplet loss for y
 
-    Altschuler & Wu Lab 2020.
+    Feng Bao @ Altschuler & Wu Lab @ UCSF 2022.
     Software provided as is under MIT License.
     """
 
@@ -91,7 +91,7 @@ def multiview_encoder(x, y, n_hidden, dim_z):
         h_x:            latent representation for modality x
         h_y:            latent representation for modality y
 
-    Altschuler & Wu Lab 2020.
+    Feng Bao @ Altschuler & Wu Lab @ UCSF 2022.
     Software provided as is under MIT License.
     """
 
@@ -123,7 +123,7 @@ def encoder(x, n_hidden):
     Outputs:
         o:              latent representation for single modality
 
-    Altschuler & Wu Lab 2020.
+    Feng Bao @ Altschuler & Wu Lab @ UCSF 2022.
     Software provided as is under MIT License.
     """
 
@@ -158,7 +158,7 @@ def decoder(z, n_hidden, n_output):
     Outputs:
         y:              reconstructed feature
 
-    Altschuler & Wu Lab 2020.
+    Feng Bao @ Altschuler & Wu Lab @ UCSF 2022.
     Software provided as is under MIT License.
     """
 

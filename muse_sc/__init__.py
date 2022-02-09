@@ -38,7 +38,7 @@ def muse_fit_predict(data_x,
           latent_x:     modality-specific latent representation corresponding to data_x.
           latent_y:     modality-specific latent representation corresponding to data_y.
 
-        Altschuler & Wu Lab 2020.
+        Feng Bao @ Altschuler & Wu Lab @ UCSF 2022.
         Software provided as is under MIT License.
     """
 
