@@ -3,7 +3,7 @@
 MUSE is a deep learning approach characterizing tissue composition through combined analysis of morphologies and transcriptional states for spatially resolved transcriptomics data.
 
 > Citation: 
-> Integrative spatial analysis of cell morphologies and transcriptional states with MUSE. Feng Bao<sup>\*</sup>, Yue Deng<sup>\*</sup>, Sen Wan, Susan, Shen, Bo Wang, Qionghai Dai<sup>\#</sup>, Steven J. Altschuler<sup>\#</sup>, Lani F. Wu<sup>\#</sup>
+> Bao, F., Deng, Y., Wan, S. et al. Integrative spatial analysis of cell morphologies and transcriptional states with MUSE. Nat Biotechnol (2022). https://doi.org/10.1038/s41587-022-01251-z
 
 ## Overview
 
